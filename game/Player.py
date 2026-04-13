@@ -1,11 +1,9 @@
-# inheritance
 import random
 import time
 
 class Player():
 
     def __init__(self, type="pc", cards=[], total_amount_bet=0, name="", amount=0):
-        
         self.name = name
         self.type = type
         self.cards = cards
@@ -33,7 +31,7 @@ class Player():
         print("Pc thinking. What to do")
         time.sleep(3)
         to_do = random.randint(1, 2)
-        raise_amount = amount + random.randint(10, 200)
+        raise_amount = amount + random.randint(10, 250)
 
         if raise_amount > self.amount:
             to_do = 1
@@ -41,7 +39,7 @@ class Player():
         # 1 is match
         if to_do == 1:
             if self.amount >= amount:
-                self.amount -= amount
+                self.amount = self.amount - amount
                 print(f"Matching your action. Bet {amount}")
                 return amount
             else:
