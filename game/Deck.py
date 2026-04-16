@@ -7,7 +7,8 @@ class Deck():
 
         ranks=Card.RANKS
         suites=Card.SUITES
-        deck=[] #datatype is an array
+        deck=[]#datatype is an array
+
 
         for rank in ranks:
             for suite in suites:
@@ -15,6 +16,7 @@ class Deck():
                 deck.append(card)
         self.deck=deck
 
+    
     def shuffle(self):
         newDeck=[]
         deck=self.deck
@@ -23,45 +25,67 @@ class Deck():
                 card=deck[0]
                 newDeck.append(card)
                 break
-
             n=random.randint(0,len(deck)-1)
-
-            card=deck # Must be deck to get the specific card
+       
+            card=deck[n] 
             deck.pop(n)
             newDeck.append(card)
         self.deck=newDeck
 
-
     def print_deck(self):
         deck=self.deck
         print("Deck size is",len(deck))
-        print("-----------")
+        print("..............")
         for card in deck:
-            card.printCard()
-            print("-----------")
+            card.print_card()
+            print("-------------")
 
     def burn_card(self):
-        print("before burning deck")
-        self.print_deck()
-        print("After burning")
+        #print("before buring deck")
+        #self.print_deck()
+        #print("After buring")
         top_card=self.deck[0]
         self.deck.pop(0)
         self.deck.append(top_card)
-        self.print_deck()
+        #self.print_deck()
         pass
+    ##
 
     def give_card(self):
-        #take a card out of the deck from the end deck
+        #->take a card out of the deck from the end deck 
         #and give it out
         top_card=self.deck[0]
         self.deck.pop(0)
         return top_card
-
-if __name__ == "__main__":
+        
+if __name__=="__main__":
     d1=Deck()
     d1.shuffle()
-    d1.burn_card()
-    card=d1.give_card()
-    print("given card is")
-    card.printCard()
-    d1.print_deck()
+    human_cards=[d1.give_card(),
+                 d1.give_card(),
+                 d1.give_card(),
+                 d1.give_card(),
+                d1.give_card(),
+                d1.give_card(),
+                d1.give_card()
+                 ]
+
+    for card in human_cards:
+        card.print_card()
+
+    royal=["A","K","Q","J","10"]
+
+    sorted_cards=[]
+
+    for rank in royal:
+        for card in human_cards:
+            if card.rank==rank:
+                sorted_cards.append(card)
+
+    print("Sorted cards")
+    for card in sorted_cards:
+        card.print_card()
+
+
+
+
