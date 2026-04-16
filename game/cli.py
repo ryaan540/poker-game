@@ -21,4 +21,14 @@ def play_game():
     game.turn=human
     game.pot=pc_amount+human_amount
 
+    k=0
+
+    print("----------------------------")
+    print("Starting 1st betting round")
+    print("----------------------------")
+    while True:
+         
+         if k>=1 and pc.amount==human.amount:
+             
+
 play_game()
