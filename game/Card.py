@@ -1,38 +1,37 @@
-class Card:
-    RANKS = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
-    SUITES=["HEARTS", "DIAMONDS", "SPADES", "CLUBS", "JOKER"]
-    def __init__(self, suite, rank):
-        
+class Card():
 
-        if not isinstance(suite, str):
-            raise TypeError(f'Suite expected to be a string, got {type(suite).__name__}')
-        if not isinstance(rank, str):
-            raise TypeError(f'Rank expected to be a string, got {type(rank).__name__}')
+    RANKS=["A","K","Q","J","10","9","8","7","6","5","4","3","2"]
+    SUITES=["HEART","DIAMOND","SPADE","CLUBS"]
+    def __init__(self,suite,rank):
 
-        suiteUpper = suite.upper()
-        rankUpper = rank.upper()
+       
+       if not isinstance(suite,str):
+           raise TypeError(f"Suite expected to be a string got {type(suite).__name__}")
+       
+       if not isinstance(rank,str):
+          raise TypeError(f"Suite expected to be a string got {type(rank).__name__}")
 
-        if suiteUpper == "JOKER":
-            self.rank = "JOKER"
-            self.suite = suiteUpper
-            return
+       suiteUpper=suite.upper()
+       rankUpper=rank.upper()
+       if rankUpper in Card.RANKS:
+           pass
+       else:
+           raise TypeError(f"Added rank not in rank list {Card.RANKS}")
+       
+       if suiteUpper in Card.SUITES:
+           pass
+       else:
+           raise TypeError(f"Added suite not in suite list {Card.SUITES}")
+       
+       self.rank=rankUpper
+       self.suite=suiteUpper
 
-        if rankUpper not in Card.RANKS:
-            raise ValueError(f'Invalid rank: {rank}')
-        if suiteUpper not in Card.SUITES:
-            raise ValueError(f'Invalid suit: {suite}')
+    def print_card(self):
+        print(f"{self.rank} {self.suite}")
 
-        self.rank = rank
-        self.suite = suite
+if __name__=="__main__":
+    card1=Card(suite="Joker",rank="A")
+    card1.print_card()
 
-    def printCard(self):
-        print("Rank:", self.rank)
-        print("Suite:", self.suite)
-
-
-if __name__ == "__main__":
-    card1 = Card(suite="Joker", rank="A")  # Joker card
-    card1.printCard()
-
-    card2 = Card(suite="Clubs", rank="3")
-    card2.printCard()
+    card2=Card(suite="Clubs",rank="3")
+    card2.print_card()
